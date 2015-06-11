@@ -34,7 +34,7 @@ $email='test'. rand() .'@example.com';
 * Ideally, you would inlcude the graphic in a script that is emailing
 * something using sendmail, phpMailer, or another transport class.
 */
-$trackingGraphic = '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
+$trackingGraphic = '<img src="/static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
 
 /*
 * Output the tracking graphic.
@@ -75,6 +75,26 @@ function outputHTML()
     }
     echo '</tbody>';
     echo '</table>';
+
+    resetDatabase($db);
+}
+
+/*
+* Used in the example...
+* You do not need to keep this function.
+*/
+function resetDatabase($db)
+{
+    //if database > 20 , drop table.
+    $result = $db->query('SELECT COUNT(*) FROM email_log');
+    foreach($result as $row)
+    {
+        if( $row[0] > 20) {
+            //Drop the table
+            $drop = $db->exec('DELETE FROM email_log');
+            $vacuum = $db->exec('VACUUM');
+        }
+    }
 }
 ?>
 
