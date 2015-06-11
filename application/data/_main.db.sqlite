@@ -4,4 +4,4 @@ CREATE TABLE "email_log" (
 	`subject`	TEXT,
 	`opened`	TEXT NOT NULL
 );
-INSERT INTO `email_log` VALUES (1,'test@example.com','Testing...');
+INSERT INTO `email_log` VALUES (1,'test@example.com','Testing...', '1999-12-31 11:59:59');
