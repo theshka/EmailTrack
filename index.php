@@ -34,7 +34,7 @@ $email='test'. rand() .'@example.com';
 * Ideally, you would inlcude the graphic in a script that is emailing
 * something using sendmail, phpMailer, or another transport class.
 */
-$trackingGraphic = '<img src="/static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
+$trackingGraphic = '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
 
 /*
 * Output the tracking graphic.
@@ -52,10 +52,7 @@ echo $trackingGraphic;
 */
 function outputHTML()
 {
-    //Output the results
-    $db = new PDO('sqlite:./application/data/_main.db');
-    $result = $db->query('SELECT customer, subject, opened FROM email_log');
-
+    //Output the HTML table...
     echo '<style>table, th, td{border: 1px solid black;}</style>';
     echo '<table>';
     echo '<caption>SQLite Database Output</caption>';
@@ -65,6 +62,9 @@ function outputHTML()
     echo '<th>Opened</th>';
     echo '</thead>';
     echo '<tbody>';
+
+    $db = new PDO('sqlite:./application/data/_main.db');
+    $result = $db->query('SELECT customer, subject, opened FROM email_log');
     foreach ($result as $row)
     {
         echo '<tr>';
@@ -90,8 +90,8 @@ function resetDatabase($db)
     foreach($result as $row)
     {
         if( $row[0] > 20) {
-            //Drop the table
-            $drop = $db->exec('DELETE FROM email_log');
+            //Reset the table
+            $delete = $db->exec('DELETE FROM email_log');
             $vacuum = $db->exec('VACUUM');
         }
     }
@@ -115,6 +115,8 @@ function resetDatabase($db)
 </head>
 
 <body>
+    <a href="index2.php" title="EmailTrack Test" >Send Mail</a>
+    <br>
     <?php outputHTML(); ?>
 </body>
 </html>
