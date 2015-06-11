@@ -1,5 +1,5 @@
 # EmailTrack
-## A simple PHP class to gather track whether or not an email was opened.
+## A simple PHP class to generate a ghost image used to track whether or not an email was opened using SQLite and PDO.
 
 ## INSTALLATION
 - Full instructions for how to use the class are in `index.php`
