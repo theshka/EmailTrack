@@ -34,7 +34,7 @@ $email='test'. rand() .'@example.com';
 * Ideally, you would inlcude the graphic in a script that is emailing
 * something using sendmail, phpMailer, or another transport class.
 */
-$trackingGraphic = '<img src="/static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
+$trackingGraphic = '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
 
 /*
 * Output the tracking graphic.
