@@ -41,6 +41,7 @@ $trackingGraphic = '<img src="static/images/blank.php?log=true&subject='.urlenco
 
 /**
  * Output the tracking graphic.
+ *
  * Ideally, this graphic would have been inlucded in the body of an email.
  * the loading of the graphic will trigger the class and insert the $_GET
  * data in the database. Thus, knowing the recipient has seen the message.
@@ -49,6 +50,7 @@ echo $trackingGraphic;
 
 /**
  * Output the database table...
+ *
  * Ideally, you would have a view in your application where the tracking
  * information would be output. The possibilites here are endless, however,
  * I will just quickly output the data from the database.
@@ -82,8 +84,10 @@ function outputHTML()
 }
 
 /**
- * Used in the example.
- * ...You do not need to keep this function.
+ * Reset Database
+ *
+ * Used in the example to reset the example database,
+ * you do not need to keep this function in your app.
  *
  * @param resource $db the database connection
  */

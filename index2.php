@@ -22,6 +22,7 @@
 
 /**
  * Index/Example 2
+ *
  * This example is a functional script for injecting
  * the tracking graphic, and sending an email using
  * PHP's mail() command (sendmail) and a html form.
@@ -64,6 +65,7 @@ if ($_POST['send'] == true) {
 
         /**
          * Send the message
+         *
          * I am commenting out this line, so that the server
          * I host this example on is not actually sending
          * anything. Replace if (true == true) to use sendmail.
@@ -74,6 +76,7 @@ if ($_POST['send'] == true) {
 
             /**
              * Output a fake email
+             *
              * Since we're not actually sending mail in the demo,
              * we will output the fake message here so that the
              * tracking graphic is called and shows in the DB.
