@@ -5,6 +5,7 @@
  * [NEW] checkVars method instead of doing it in the runApplication method.
  * [NEW] Added settings definition to the top of class.
  * [NEW] Added change log to the project.
+ * [NEW] Added random subject generator function to example.
  * [Changed] Apply PSR-1/2 coding standards
  * [Changed] Database field names from `customer` to `email`
  * [Changed] Update README file.
