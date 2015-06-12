@@ -1,5 +1,4 @@
 <?php
-
 /**
  * A simple PHP class to track whether or not an email was opened.
  *
@@ -33,9 +32,8 @@ class EmailTrack
     private $subject;
 
     /*
-    * The constructor initilizes a PDO connection to the database, and
-    * then calls the runApplication method, which calls the necessary
-    * functions to track when a user downloads the ghost image.
+    * The constructor calls the connectDB method, which initilizes a
+    * PDO connection to the database, and then calls runApplication()
     *
     * @param: null this method accepts no parameters.
     * @return null this method returns nothing.
@@ -51,10 +49,10 @@ class EmailTrack
     /*
     * The connectDB method simply checks for the presence
     * of a SQLite database, if none is found, it creates
-    * the database, and populates it with our schema.
+    * the database and populates it with our schema.
     *
     * @param: null this method accepts no parameters.
-    * @return object returns a connection to SQLite DB.
+    * @return resource returns a connection to SQLite DB.
     */
     private function connectDB()
     {
@@ -83,7 +81,7 @@ class EmailTrack
     * variables in the class instance of the same variables.
     *
     * @param: null this method accepts no parameters.
-    * @return string returns the $_GET variables as object
+    * @return object returns the $_GET variables as object
     */
     private function getVars()
     {
@@ -94,7 +92,7 @@ class EmailTrack
 
     /*
     * The checkVars method simply checks the supplied $_GET
-    * variables for valid input. Retuens true if valid.
+    * variables for valid input. Returns true if valid.
     *
     * @param: $_GET this method accepts get data.
     * @return bool returns true if input is valid.
@@ -124,7 +122,7 @@ class EmailTrack
     {
         //Prepare the statement
         $duplicate = 'SELECT email, subject
-                      FROM email_log
+                      FROM   email_log
                       WHERE  email=:email AND subject=:subject
                       LIMIT 1';
         $stmt = $this->db->prepare($duplicate);
@@ -136,7 +134,7 @@ class EmailTrack
         //Execute query...
         $stmt->execute();
 
-        //Make sure we aren't duplicating the insertion!
+        //Make sure we are not duplicating the insert!
         $result_row = $stmt->fetchObject();
 
         if ($result_row) {
@@ -160,7 +158,7 @@ class EmailTrack
     {
         //Prepare the statement
         $insert = 'INSERT INTO email_log (email, subject, opened)
-        VALUES (:email, :subject, :opened)';
+                   VALUES (:email, :subject, :opened)';
         $stmt = $this->db->prepare($insert);
 
         // Bind parameters to statement variables
@@ -183,7 +181,7 @@ class EmailTrack
     * our ghost graphic to the users browser.
     *
     * @param: null this method accepts no parameters.
-    * @return bool returns true if the insert query is executed.
+    * @return object this method outputs an image/gif
     */
     private function outputHeaders()
     {
@@ -212,9 +210,6 @@ class EmailTrack
     * it will check if an entry already exists, if not, it will
     * insert it in the database. If so, it will continue on to
     * output the ghost image regardless.
-    *
-    * @param: null this method accepts no parameters.
-    * @return bool returns true if the insert query is executed.
     */
     public function runApplication()
     {
