@@ -1,0 +1,6 @@
+*** EmailTrack Changelog ***
+
+2015.06.12 - version 0.2
+ * [NEW] Added settings definition to the top of class.
+ * [Changed] Database field names from `customer` to `email`
+ * [Removed] No longer tracking _main.db file from project. 
