@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A simple PHP class to gather track whether or not an email was opened.
+ * A simple PHP class to track whether or not an email was opened.
  *
  * EmailTrack
  *
@@ -22,7 +22,7 @@
 
 // Settings
 define('SQLITE_PATH',   '../../application/data/_main.db');
-define('IMAGE_PATH',   'blank.gif');
+define('IMAGE_PATH',    'blank.gif');
 define('REDIRECT_TO',   'https://heshka.com');
 
 //Begin Class
@@ -238,5 +238,5 @@ class EmailTrack
     }
 }
 
-//Create an instance of the application.
+//Create an instance of the class.
 $application = new EmailTrack();

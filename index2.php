@@ -1,6 +1,6 @@
 <?php
 /**
-* A simple PHP class to gather track whether or not an email was opened.
+* A simple PHP class to track whether or not an email was opened.
 *
 * EmailTrack
 *
@@ -30,40 +30,36 @@
 /*
 * Are we sending the message?
 */
-if ($_POST['send'] == true)
-{
+if ($_POST['send'] == true) {
     /*
     * Get your variables.
     */
-    $to      = $_POST['to'];
-    $from    = 'example@example.com';
+    $to = $_POST['to'];
+    $from = 'example@example.com';
     $subject = $_POST['subject'];
     $message = $_POST['message'];
 
     /*
     * Validate Input.
     */
-    if (!empty($to)         &&
-        !filter_var($to, FILTER_VALIDATE_EMAIL) === false   &&
-        !empty($from)       &&
-        !filter_var($from, FILTER_VALIDATE_EMAIL) === false &&
-        !empty($subject)    &&
-        !empty($message))
-    {
+    if (!empty($to)
+        && !filter_var($to, FILTER_VALIDATE_EMAIL) === false
+        && !empty($from)
+        && !filter_var($from, FILTER_VALIDATE_EMAIL) === false
+        && !empty($subject)
+        && !empty($message)) {
 
         /*
         * Inject the tracking graphic
         */
-        $message .= '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&email=' . urlencode( $to ) . '" alt="EmailTrack"/>';
-
+        $message .= '<img src="static/images/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($to).'" alt="EmailTrack"/>';
 
         /*
         * Setup mail headers
         */
-        $headers = 'From: ' . $from . '\r\n';
-        $headers .= 'MIME-Version: 1.0' . '\r\n';
-        $headers .= 'Content-type:text/html;charset=UTF-8' . '\r\n';
-
+        $headers = 'From: '.$from.'\r\n';
+        $headers .= 'MIME-Version: 1.0'.'\r\n';
+        $headers .= 'Content-type:text/html;charset=UTF-8'.'\r\n';
 
         /*
         * Send the message
@@ -81,23 +77,21 @@ if ($_POST['send'] == true)
             * we will output the fake message here so that the
             * tracking graphic is called and shows in the DB.
             */
-            echo '<div class="feedback">' . 'Success!' . '</div>';
+            echo '<div class="feedback">'.'Success!'.'</div>';
             echo '<pre>';
-            echo 'Headers: ' . $headers . '<br>';
-            echo 'From: "' . $from . '"<br>';
-            echo 'To: "' . $to . '"<br>';
-            echo 'Subject: "' . $subject . '"<br>';
-            echo 'Message: "' . $message . '<br>';
+            echo 'Headers: '.$headers.'<br>';
+            echo 'From: "'.$from.'"<br>';
+            echo 'To: "'.$to.'"<br>';
+            echo 'Subject: "'.$subject.'"<br>';
+            echo 'Message: "'.$message.'<br>';
             echo '</pre>';
-        }
-        else {
+        } else {
             //Failure
-            echo '<div class="feedback">' . 'Failure.' . '</div>';
+            echo '<div class="feedback">'.'Failure.'.'</div>';
         }
-    }
-    else {
+    } else {
         //Validation Error
-        echo '<div class="feedback">' . 'Complete all fields, and enter a valid email address.' . '</div>';
+        echo '<div class="feedback">'.'Complete all fields, and enter a valid email address.'.'</div><br>';
     }
 }
 ?>
@@ -113,7 +107,7 @@ if ($_POST['send'] == true)
     <meta name="author" content="Tyler Heshka <theshka>">
 
     <style>
-    .feedback{
+    .feedback {
         color: red;
         font-size: 2em;
     }
@@ -130,14 +124,14 @@ if ($_POST['send'] == true)
 </head>
 
 <body>
-    <a href="index.php" title="EmailTrack Test" >View Database</a>
-    <br>
+    <a href="index.php" title="EmailTrack Test">View Database</a>
+    <br><br>
     <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
         <fieldset>
             <legend>Test the EmailTrack class...</legend>
             <div>
                 <label for="subject">To:</label>
-                <input type="text" name="to" value="<?='test'. rand() .'@example.com';?>" />
+                <input type="text" name="to" value="<?='test'.rand().'@example.com';?>" />
             </div>
             <div>
                 <label for="subject">Subject:</label>

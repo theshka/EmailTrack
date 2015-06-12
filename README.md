@@ -2,13 +2,11 @@
 ## This simple PHP class outputs a ghost image and uses PDO & SQLite to track whether or not an email has been seen.
 
 ## INSTALLATION
-- Create a SQLite database using the supplied table schema `_main.db.sqlite`
 - Full instructions and examples for how to use the class are in `index.php` & `index2.php`
 - The class resides in `static/images/blank.php`
 - Upload the `blank.gif` and `blank.php` to the same directory.
 - You may need to edit the path to the SQLite database.
-- SQLite Databases can be downloaded with a direct link if you do not take precautions
-to secure the file. You can so this with `.htaccess` or by making the file hidden.
+- SQLite Databases can pose a security risk, and may be downloaded with a direct link. Please take precautions to secure the file!!! You can so this with Apache `.htaccess` or by making the file hidden.
 
 Working Demo: http://tyrexi.us/EmailTrack
 Working Demo: http://tyrexi.us/EmailTrack2

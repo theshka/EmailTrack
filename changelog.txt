@@ -5,7 +5,10 @@
  * [NEW] checkVars method instead of doing it in the runApplication method.
  * [NEW] Added settings definition to the top of class.
  * [NEW] Added change log to the project.
+ * [Changed] Apply PSR-1/2 coding standards
  * [Changed] Database field names from `customer` to `email`
+ * [Changed] Update README file.
+ * [Changed] Update EXAMPLES.
  * [Removed] No longer tracking _main.db file from project.
 
 2015.05.01 - version 0.1

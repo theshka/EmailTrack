@@ -1,6 +1,6 @@
 <?php
 /**
-* A simple PHP class to gather track whether or not an email was opened.
+* A simple PHP class to track whether or not an email was opened.
 *
 * EmailTrack
 *
@@ -27,14 +27,14 @@
 * the email containing the ghost graphic.
 */
 $subject = 'Testing...';
-$email='test'. rand() .'@example.com';
+$email = 'test'.rand().'@example.com';
 
 /*
 * Build the ghost graphic.
 * Ideally, you would inlcude the graphic in a script that is emailing
 * something using sendmail, phpMailer, or another transport class.
 */
-$trackingGraphic = '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&email=' . urlencode( $email ) . '" alt="EmailTrack"/>';
+$trackingGraphic = '<img src="static/images/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($email).'" alt="EmailTrack"/>';
 
 /*
 * Output the tracking graphic.
@@ -53,7 +53,6 @@ echo $trackingGraphic;
 function outputHTML()
 {
     //Output the HTML table...
-    echo '<style>table, th, td{border: 1px solid black;}</style>';
     echo '<table>';
     echo '<caption>SQLite Database Output</caption>';
     echo '<thead>';
@@ -65,12 +64,11 @@ function outputHTML()
 
     $db = new PDO('sqlite:./application/data/_main.db');
     $result = $db->query('SELECT email, subject, opened FROM email_log');
-    foreach ($result as $row)
-    {
+    foreach ($result as $row) {
         echo '<tr>';
-        echo '<td>' . $row['email'] . '</td>';
-        echo '<td>' . $row['subject'] . '</td>';
-        echo '<td>' . $row['opened'] . '</td>';
+        echo '<td>'.$row['email'].'</td>';
+        echo '<td>'.$row['subject'].'</td>';
+        echo '<td>'.$row['opened'].'</td>';
         echo '</tr>';
     }
     echo '</tbody>';
@@ -87,9 +85,8 @@ function resetDatabase($db)
 {
     //if database > 20 , drop table.
     $result = $db->query('SELECT COUNT(*) FROM email_log');
-    foreach($result as $row)
-    {
-        if( $row[0] > 20) {
+    foreach ($result as $row) {
+        if ($row[0] > 20) {
             //Reset the table
             $delete = $db->exec('DELETE FROM email_log');
             $vacuum = $db->exec('VACUUM');
@@ -109,13 +106,21 @@ function resetDatabase($db)
     <meta name="description" content="This class will output a ghost image and update a SQLite database.">
     <meta name="author" content="Tyler Heshka <theshka>">
 
+    <style>
+    table {
+        width: 100%;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    </style>
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 
 <body>
-    <a href="index2.php" title="EmailTrack Test" >Send Mail</a>
+    <a href="index2.php" title="EmailTrack Test">Send Mail</a>
     <br>
     <?php outputHTML(); ?>
 </body>
