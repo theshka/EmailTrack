@@ -41,10 +41,24 @@ class EmailTrack {
     */
     public function __construct()
     {
-        //Connect to SQLite3
-        $this->db = new PDO('sqlite:' . SQLITE_PATH);
+        //Connect the database
+        $this->connectDB();
         //Run the application
         $this->runApplication();
+    }
+
+    /*
+    * The connectDB method simply checks for the presence
+    * of a SQLite database, if none is found, it creates
+    * the database, and populates it with our schema.
+    *
+    * @param: null this method accepts no parameters.
+    * @return object returns a connection to SQLite DB.
+    */
+    private function connectDB()
+    {
+        //Connect to SQLite3
+        $this->db = new PDO('sqlite:' . SQLITE_PATH);
     }
 
     /*
@@ -59,6 +73,27 @@ class EmailTrack {
         //Assign the user and subject to variables
         $this->email = $_GET['email'];
         $this->subject  = $_GET['subject'];
+    }
+
+    /*
+    * The checkVars method simply checks the supplied $_GET
+    * variables for valid input. Retuens true if valid.
+    *
+    * @param: $_GET this method accepts get data.
+    * @return bool returns true if input is valid.
+    */
+    private function checkVars()
+    {
+        if(($_GET['log'] == 'true') &&
+        !empty($_GET['log'])        &&
+        !empty($_GET['email'])      &&
+        !empty($_GET['subject']))
+        {
+            //Valid input
+            return true;
+        }
+        //Invalid input
+        return false;
     }
 
     /*
@@ -168,12 +203,10 @@ class EmailTrack {
     */
     public function runApplication()
     {
-        if( ($_GET['log'] == 'true')      &&
-        !empty($_GET['log'])          &&
-        !empty($_GET['email'])     &&
-        !empty($_GET['subject']) )
+        //Check for valid GET parameters
+        if ($this->checkVars() === true)
         {
-            //Get Vars
+            //Get the variables
             $this->getVars();
 
             //Check for duplicate entry.

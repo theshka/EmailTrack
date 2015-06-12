@@ -57,7 +57,7 @@ function outputHTML()
     echo '<table>';
     echo '<caption>SQLite Database Output</caption>';
     echo '<thead>';
-    echo '<th>email</th>';
+    echo '<th>Email</th>';
     echo '<th>Subject</th>';
     echo '<th>Opened</th>';
     echo '</thead>';
