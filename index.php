@@ -16,7 +16,7 @@
 * @author     Tyler Heshka <tyler@heshka.com>
 * @see        http://keybase.io/theshka
 * @license    http://opensource.org/licenses/MIT
-* @version    1.00.00
+* @version    0.20
 */
 
 /*
@@ -34,7 +34,7 @@ $email='test'. rand() .'@example.com';
 * Ideally, you would inlcude the graphic in a script that is emailing
 * something using sendmail, phpMailer, or another transport class.
 */
-$trackingGraphic = '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $email ) . '" alt="EmailTrack"/>';
+$trackingGraphic = '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&email=' . urlencode( $email ) . '" alt="EmailTrack"/>';
 
 /*
 * Output the tracking graphic.
@@ -57,18 +57,18 @@ function outputHTML()
     echo '<table>';
     echo '<caption>SQLite Database Output</caption>';
     echo '<thead>';
-    echo '<th>Customer</th>';
+    echo '<th>email</th>';
     echo '<th>Subject</th>';
     echo '<th>Opened</th>';
     echo '</thead>';
     echo '<tbody>';
 
     $db = new PDO('sqlite:./application/data/_main.db');
-    $result = $db->query('SELECT customer, subject, opened FROM email_log');
+    $result = $db->query('SELECT email, subject, opened FROM email_log');
     foreach ($result as $row)
     {
         echo '<tr>';
-        echo '<td>' . $row['customer'] . '</td>';
+        echo '<td>' . $row['email'] . '</td>';
         echo '<td>' . $row['subject'] . '</td>';
         echo '<td>' . $row['opened'] . '</td>';
         echo '</tr>';

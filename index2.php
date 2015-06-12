@@ -16,7 +16,7 @@
 * @author     Tyler Heshka <tyler@heshka.com>
 * @see        http://keybase.io/theshka
 * @license    http://opensource.org/licenses/MIT
-* @version    1.00.00
+* @version    0.20
 */
 
 /*
@@ -54,7 +54,7 @@ if ($_POST['send'] == true)
         /*
         * Inject the tracking graphic
         */
-        $message .= '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&customer=' . urlencode( $to ) . '" alt="EmailTrack"/>';
+        $message .= '<img src="static/images/blank.php?log=true&subject=' . urlencode( $subject ) . '&email=' . urlencode( $to ) . '" alt="EmailTrack"/>';
 
 
         /*

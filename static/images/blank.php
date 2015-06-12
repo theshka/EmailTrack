@@ -16,13 +16,19 @@
 * @author     Tyler Heshka <tyler@heshka.com>
 * @see        http://keybase.io/theshka
 * @license    http://opensource.org/licenses/MIT
-* @version    1.00.00
+* @version    0.00.20
 */
 
+// Settings
+define('SQLITE_PATH',   '../../application/data/_main.db');
+define('IMAGE_PATH' ,   'blank.gif');
+define('REDIRECT_TO',   'https://heshka.com');
+
+//Begin Class
 class EmailTrack {
 
     private $db;
-    private $customer;
+    private $email;
     private $subject;
 
     /*
@@ -36,7 +42,7 @@ class EmailTrack {
     public function __construct()
     {
         //Connect to SQLite3
-        $this->db = new PDO('sqlite:../../application/data/_main.db');
+        $this->db = new PDO('sqlite:' . SQLITE_PATH);
         //Run the application
         $this->runApplication();
     }
@@ -51,7 +57,7 @@ class EmailTrack {
     private function getVars()
     {
         //Assign the user and subject to variables
-        $this->customer = $_GET['customer'];
+        $this->email = $_GET['email'];
         $this->subject  = $_GET['subject'];
     }
 
@@ -66,13 +72,13 @@ class EmailTrack {
     private function checkIfEntryExists()
     {
         //Prepare the statement
-        $duplicate = 'SELECT customer, subject FROM email_log
-        WHERE  customer=:customer AND subject=:subject
+        $duplicate = 'SELECT email, subject FROM email_log
+        WHERE  email=:email AND subject=:subject
         LIMIT 1';
         $stmt = $this->db->prepare($duplicate);
 
         // Bind parameters to statement variables
-        $stmt->bindValue(':customer', $this->customer);
+        $stmt->bindValue(':email', $this->email);
         $stmt->bindValue(':subject', $this->subject);
 
         //Execute query...
@@ -102,12 +108,12 @@ class EmailTrack {
     private function insertNewEntry()
     {
         //Prepare the statement
-        $insert = 'INSERT INTO email_log (customer, subject, opened)
-        VALUES (:customer, :subject, :opened)';
+        $insert = 'INSERT INTO email_log (email, subject, opened)
+        VALUES (:email, :subject, :opened)';
         $stmt = $this->db->prepare($insert);
 
         // Bind parameters to statement variables
-        $stmt->bindParam(':customer', $this->customer);
+        $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':subject', $this->subject);
         $stmt->bindParam(':opened', gmdate('Y-m-d H:i:s'));
 
@@ -132,7 +138,7 @@ class EmailTrack {
     private function outputHeaders()
     {
         //Get the absolute/relative path to the image
-        $image = 'blank.gif';
+        $image = IMAGE_PATH;
 
         //Get the filesize of the image for headers
         $filesize = filesize( $image );
@@ -164,7 +170,7 @@ class EmailTrack {
     {
         if( ($_GET['log'] == 'true')      &&
         !empty($_GET['log'])          &&
-        !empty($_GET['customer'])     &&
+        !empty($_GET['email'])     &&
         !empty($_GET['subject']) )
         {
             //Get Vars
@@ -183,7 +189,7 @@ class EmailTrack {
         else
         {
             //Insufficent $_GET parameters supplied.
-            header('Location: https://heshka.com');
+            header('Location: ' . REDIRECT_TO );
         }
     }
 }
