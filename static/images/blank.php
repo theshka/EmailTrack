@@ -1,32 +1,33 @@
 <?php
+
 /**
-* A simple PHP class to gather track whether or not an email was opened.
-*
-* EmailTrack
-*
-* LICENSE: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-* OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-* FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
-* CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-* WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*
-* @category   HTML,PHP5,Databases,Tracking
-* @author     Tyler Heshka <tyler@heshka.com>
-* @see        http://keybase.io/theshka
-* @license    http://opensource.org/licenses/MIT
-* @version    0.00.20
-*/
+ * A simple PHP class to gather track whether or not an email was opened.
+ *
+ * EmailTrack
+ *
+ * LICENSE: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @category   HTML,PHP5,Databases,Tracking
+ * @author     Tyler Heshka <tyler@heshka.com>
+ * @see        http://keybase.io/theshka
+ * @license    http://opensource.org/licenses/MIT
+ * @version    0.00.20
+ */
 
 // Settings
 define('SQLITE_PATH',   '../../application/data/_main.db');
-define('IMAGE_PATH' ,   'blank.gif');
+define('IMAGE_PATH',   'blank.gif');
 define('REDIRECT_TO',   'https://heshka.com');
 
 //Begin Class
-class EmailTrack {
-
+class EmailTrack
+{
     private $db;
     private $email;
     private $subject;
@@ -59,20 +60,19 @@ class EmailTrack {
     {
         try {
             //Create/connect to SQLite database
-            $this->db = new PDO('sqlite:' . SQLITE_PATH);
+            $this->db = new PDO('sqlite:'.SQLITE_PATH);
 
             //Set errormode to exceptions
-            $this->db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            //Create tables if they dont' exist 
+            //Create tables if they dont' exist
             $this->db->exec('CREATE TABLE IF NOT EXISTS `email_log` (
             `id`		INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             `email`		TEXT,
             `subject`	TEXT,
             `opened`	TEXT NOT NULL
             )');
-        }
-        catch(PDOException $e) {
+        } catch (PDOException $e) {
             // Print PDOException message
             echo $e->getMessage();
         }
@@ -89,7 +89,7 @@ class EmailTrack {
     {
         //Assign the user and subject to variables
         $this->email = $_GET['email'];
-        $this->subject  = $_GET['subject'];
+        $this->subject = $_GET['subject'];
     }
 
     /*
@@ -101,11 +101,10 @@ class EmailTrack {
     */
     private function checkVars()
     {
-        if(($_GET['log'] == 'true') &&
-        !empty($_GET['log'])        &&
-        !empty($_GET['email'])      &&
-        !empty($_GET['subject']))
-        {
+        if (($_GET['log'] == 'true')
+            && !empty($_GET['log'])
+            && !empty($_GET['email'])
+            && !empty($_GET['subject'])) {
             //Valid input
             return true;
         }
@@ -124,9 +123,10 @@ class EmailTrack {
     private function checkIfEntryExists()
     {
         //Prepare the statement
-        $duplicate = 'SELECT email, subject FROM email_log
-        WHERE  email=:email AND subject=:subject
-        LIMIT 1';
+        $duplicate = 'SELECT email, subject
+                      FROM email_log
+                      WHERE  email=:email AND subject=:subject
+                      LIMIT 1';
         $stmt = $this->db->prepare($duplicate);
 
         // Bind parameters to statement variables
@@ -139,8 +139,7 @@ class EmailTrack {
         //Make sure we aren't duplicating the insertion!
         $result_row = $stmt->fetchObject();
 
-        if ($result_row)
-        {
+        if ($result_row) {
             //The email has already been tracked.
             return true;
         }
@@ -170,8 +169,7 @@ class EmailTrack {
         $stmt->bindParam(':opened', gmdate('Y-m-d H:i:s'));
 
         //Execute the query
-        if ($stmt->execute())
-        {
+        if ($stmt->execute()) {
             //The email has been tracked.
             return true;
         }
@@ -193,18 +191,18 @@ class EmailTrack {
         $image = IMAGE_PATH;
 
         //Get the filesize of the image for headers
-        $filesize = filesize( $image );
+        $filesize = filesize($image);
 
         //Now actually output the image requested, while disregarding if the database was affected
-        header( 'Content-Type: image/gif' );
-        header( 'Pragma: public' );
-        header( 'Expires: 0' );
-        header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
-        header( 'Cache-Control: private',false );
-        header( 'Content-Disposition: attachment; filename="blank.gif"' );
-        header( 'Content-Transfer-Encoding: binary' );
-        header( 'Content-Length: '.$filesize );
-        readfile( $image );
+        header('Content-Type: image/gif');
+        header('Pragma: public');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Cache-Control: private', false);
+        header('Content-Disposition: attachment; filename="blank.gif"');
+        header('Content-Transfer-Encoding: binary');
+        header('Content-Length: '.$filesize);
+        readfile($image);
     }
 
     /*
@@ -221,25 +219,21 @@ class EmailTrack {
     public function runApplication()
     {
         //Check for valid GET parameters
-        if ($this->checkVars() === true)
-        {
+        if ($this->checkVars() === true) {
             //Get the variables
             $this->getVars();
 
             //Check for duplicate entry.
-            if (!$this->checkIfEntryExists())
-            {
+            if (!$this->checkIfEntryExists()) {
                 //Insert the new entry.
                 $this->insertNewEntry();
             }
 
             //Output the headers
             $this->outputHeaders();
-        }
-        else
-        {
+        } else {
             //Insufficent $_GET parameters supplied.
-            header('Location: ' . REDIRECT_TO );
+            header('Location: '.REDIRECT_TO);
         }
     }
 }
