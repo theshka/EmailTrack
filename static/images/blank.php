@@ -19,25 +19,76 @@
  * @version    0.00.20
  */
 
-// Settings
-define('SQLITE_PATH',   '../../application/data/_main.db');
-define('IMAGE_PATH',    'blank.gif');
-define('REDIRECT_TO',   'https://heshka.com');
+ /**
+  * Class Settings
+  *
+  * This is the class settings. The constants may be changed
+  * to suit your websites structure and URLs. Avoid using
+  * relative paths, if possible.
+  */
 
-//Begin Class
+ /**
+  * SQLITE_PATH is the path to the SQLITE database
+  */
+ define('SQLITE_PATH',   '../../application/data/_main.db');
+
+ /**
+  * IMAGE_PATH is the path to the blank .gif image
+  */
+ define('IMAGE_PATH',    'blank.gif');
+
+ /**
+  * REDIRECT_TO is the path to redirect if proper parameters are not supplied.
+  */
+ define('REDIRECT_TO',   'https://heshka.com');
+
+
+/**
+ * EmailTrack Class
+ *
+ * This class is responsible for creating or connecting to
+ * a SQLite database using PDO. It accepts $_GET parameters
+ * logs the parameters in the database, and outputs a blank
+ * graphic to be included in an email or other script.
+ *
+ * @param bool $log log must be set, and must be true
+ * @param string $email url encoded string containing email address
+ * @param string $subject url encoded string containing the email subject
+ * @return resource returns a blank gif to the user
+ */
 class EmailTrack
 {
+    /**
+     * Class Variables
+     *
+     * These variables store the current instance of the database
+     * and the $_GET parameters supplied in the call to the script.
+     */
+
+    /**
+     * $db is this instance of the SQLite database
+     */
     private $db;
+
+    /**
+     * $email is this instance of the $_GET['email'] parameter
+     */
     private $email;
+
+    /**
+     * $subject is this instance of the $_GET['subject'] parameter
+     */
     private $subject;
 
-    /*
-    * The constructor calls the connectDB method, which initilizes a
-    * PDO connection to the database, and then calls runApplication()
-    *
-    * @param: null this method accepts no parameters.
-    * @return null this method returns nothing.
-    */
+    /**
+     * Constructor Method
+     *
+     * The constructor calls the connectDB method, which initilizes a
+     * PDO connection to the database, and then calls runApplication()
+     *
+     * @param null this method accepts no parameters
+     * @return null this method returns nothing
+     */
     public function __construct()
     {
         //Connect the database
@@ -46,14 +97,16 @@ class EmailTrack
         $this->runApplication();
     }
 
-    /*
-    * The connectDB method simply checks for the presence
-    * of a SQLite database, if none is found, it creates
-    * the database and populates it with our schema.
-    *
-    * @param: null this method accepts no parameters.
-    * @return resource returns a connection to SQLite DB.
-    */
+    /**
+     * Database Connect
+     *
+     * The connectDB method simply checks for the presence
+     * of a SQLite database, if none is found, it creates
+     * the database and populates it with our schema.
+     *
+     * @param null this method accepts no parameters
+     * @return resource returns a connection to SQLite DB
+     */
     private function connectDB()
     {
         try {
@@ -76,13 +129,15 @@ class EmailTrack
         }
     }
 
-    /*
-    * The getVars method simply stores the current $_GET
-    * variables in the class instance of the same variables.
-    *
-    * @param: null this method accepts no parameters.
-    * @return object returns the $_GET variables as object
-    */
+    /**
+     * Assign $_GET Variables
+     *
+     * The getVars() method simply stores the current $_GET
+     * variables in the class instance of the same variables.
+     *
+     * @param null this method accepts no parameters
+     * @return object returns the $_GET variables as object
+     */
     private function getVars()
     {
         //Assign the user and subject to variables
@@ -90,13 +145,15 @@ class EmailTrack
         $this->subject = $_GET['subject'];
     }
 
-    /*
-    * The checkVars method simply checks the supplied $_GET
-    * variables for valid input. Returns true if valid.
-    *
-    * @param: $_GET this method accepts get data.
-    * @return bool returns true if input is valid.
-    */
+    /**
+     * Validate $_GET Variables
+     *
+     * The checkVars() method simply checks the supplied $_GET
+     * variables for valid input. Returns true if valid.
+     *
+     * @param string $_GET this method accepts $_GET data
+     * @return bool will return true if input is valid
+     */
     private function checkVars()
     {
         if (($_GET['log'] == 'true')
@@ -110,14 +167,16 @@ class EmailTrack
         return false;
     }
 
-    /*
-    * The checkIfEntryExists method prepares a PDO statement
-    * and queries the SQLite database to determine if this
-    * email has already been inserted in the database.
-    *
-    * @param: null this method accepts no parameters.
-    * @return bool returns true if email has already been tracked.
-    */
+    /**
+     * Check For Exisitng Entry
+     *
+     * The checkIfEntryExists() method prepares a PDO statement
+     * and queries the SQLite database to determine if this
+     * email has already been inserted in the database.
+     *
+     * @param null this method accepts no parameters
+     * @return bool returns true if email has already been tracked
+     */
     private function checkIfEntryExists()
     {
         //Prepare the statement
@@ -146,14 +205,16 @@ class EmailTrack
         return false;
     }
 
-    /*
-    * The insertNewEntry method prepares a PDO statement
-    * and inserts a query in to the SQLite database. We use
-    * the PHP gmdate function to avoid timezone errors.
-    *
-    * @param: null this method accepts no parameters.
-    * @return bool returns true if the insert query is executed.
-    */
+    /**
+     * Insert New Entry
+     *
+     * The insertNewEntry method prepares a PDO statement
+     * and inserts a query in to the SQLite database. We use
+     * the PHP gmdate function to avoid timezone errors.
+     *
+     * @param null this method accepts no parameters
+     * @return bool returns true if the insert query is executed
+     */
     private function insertNewEntry()
     {
         //Prepare the statement
@@ -175,14 +236,16 @@ class EmailTrack
         return false;
     }
 
-    /*
-    * The outputHeaders method calculates the size of our
-    * ghost image, prepares the browser-headers, and sends
-    * our ghost graphic to the users browser.
-    *
-    * @param: null this method accepts no parameters.
-    * @return object this method outputs an image/gif
-    */
+    /**
+     * Output Ghost Image
+     *
+     * The outputHeaders() method calculates the size of our
+     * ghost image, prepares the browser-headers, and sends
+     * our ghost graphic to the users browser.
+     *
+     * @param null this method accepts no parameters
+     * @return resource this method outputs an image/gif
+     */
     private function outputHeaders()
     {
         //Get the absolute/relative path to the image
@@ -191,7 +254,7 @@ class EmailTrack
         //Get the filesize of the image for headers
         $filesize = filesize($image);
 
-        //Now actually output the image requested, while disregarding if the database was affected
+        //Now actually output the image.
         header('Content-Type: image/gif');
         header('Pragma: public');
         header('Expires: 0');
@@ -203,14 +266,16 @@ class EmailTrack
         readfile($image);
     }
 
-    /*
-    * The runApplication method is the main controller logic
-    * for our application. It will determine if the necessary
-    * $_GET parameters are set, and not empty. If validated,
-    * it will check if an entry already exists, if not, it will
-    * insert it in the database. If so, it will continue on to
-    * output the ghost image regardless.
-    */
+    /**
+     * Application Logic
+     *
+     * The runApplication method is the main controller logic
+     * for our application. It will determine if the necessary
+     * $_GET parameters are set, and not empty. If validated,
+     * it will check if an entry already exists, if not, it will
+     * insert it in the database. If so, it will continue on to
+     * output the ghost image regardless.
+     */
     public function runApplication()
     {
         //Check for valid GET parameters
