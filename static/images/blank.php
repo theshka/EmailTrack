@@ -57,8 +57,25 @@ class EmailTrack {
     */
     private function connectDB()
     {
-        //Connect to SQLite3
-        $this->db = new PDO('sqlite:' . SQLITE_PATH);
+        try {
+            //Create/connect to SQLite database
+            $this->db = new PDO('sqlite:' . SQLITE_PATH);
+
+            //Set errormode to exceptions
+            $this->db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+            //Create tables if they dont' exist 
+            $this->db->exec('CREATE TABLE IF NOT EXISTS `email_log` (
+            `id`		INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            `email`		TEXT,
+            `subject`	TEXT,
+            `opened`	TEXT NOT NULL
+            )');
+        }
+        catch(PDOException $e) {
+            // Print PDOException message
+            echo $e->getMessage();
+        }
     }
 
     /*
@@ -228,11 +245,4 @@ class EmailTrack {
 }
 
 //Create an instance of the application.
-try
-{
-    $application = new EmailTrack();
-}
-catch (\Exception $e)
-{
-    var_dump($e->getMessage());
-}
+$application = new EmailTrack();

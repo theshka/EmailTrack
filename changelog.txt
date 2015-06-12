@@ -1,6 +1,12 @@
 *** EmailTrack Changelog ***
 
 2015.06.12 - version 0.2
+ * [NEW] Database connect method.
+ * [NEW] checkVars method instead of doing it in the runApplication method.
  * [NEW] Added settings definition to the top of class.
+ * [NEW] Added chanage log to the project.
  * [Changed] Database field names from `customer` to `email`
- * [Removed] No longer tracking _main.db file from project. 
+ * [Removed] No longer tracking _main.db file from project.
+
+2015.05.01 - version 0.1
+ * [NEW] Initial Commit
