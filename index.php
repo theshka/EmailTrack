@@ -19,17 +19,25 @@
  * @version    0.00.20
  */
 
+ /**
+  * Index/Example 1
+  *
+  * This example demonstrates how the class is to be used.
+  * It will output the tracking graphic, and display all
+  * database results in an html table.
+  */
+
 
 /**
  * Get your variables.
  *
  * These could come from a form, database, hardcoded, or elsewhere..
- * this example will just generate a random test email address.
+ * this example will just generate a random test email address and subject.
  * each time you refresh the page you can simulate someone opening
  * the email containing the ghost graphic.
  */
 $subject = randomSubject();
-$email = 'test'.rand().'@example.com';
+$email = 'test_'.substr(md5(rand()), 0, 7).'@example.com';
 
 /**
  * Build the ghost graphic.
@@ -112,38 +120,37 @@ function resetDatabase($db)
  * @param string a short sentence is returned
  */
 function randomSubject()
-	{
-		//Parts of Speach & Words
-        $articles = array("my", "the", "their", "a", "this", "that", "his", "her");
-		$adjective = array("lame", "giant", "good", "bad", "angry", "scary", "magnificient", "interesting");
-        $noun = array("dog", "bear", "cat", "dude", "bird", "girl", "boy", "person");
-        $verb = array("fell", "walked", "lived", "went", "flew", "ran", "hustled", "hid");
-		$preposition= array("through", "around", "behind", "near", "over", "below", "beneath", "above");
+{
+	//Parts of Speach & Words
+    $articles = array("my", "the", "their", "a", "this", "that", "his", "her");
+	$adjective = array("lame", "giant", "good", "bad", "angry", "scary", "magnificient", "interesting");
+    $noun = array("dog", "bear", "cat", "dude", "bird", "girl", "boy", "person");
+    $verb = array("fell", "walked", "lived", "went", "flew", "ran", "hustled", "hid");
+	$preposition= array("through", "around", "behind", "near", "over", "below", "beneath", "above");
 
-		//Randomize the array
-        $random_article = array_rand($articles, 2);
-        $random_adjective = array_rand($adjective, 2);
-        $random_noun = array_rand($noun, 2);
-        $random_verb = array_rand($verb, 2);
-		$random_perposition = array_rand($preposition, 2);
+	//Randomize the array
+    $random_article = array_rand($articles, 2);
+    $random_adjective = array_rand($adjective, 2);
+    $random_noun = array_rand($noun, 2);
+    $random_verb = array_rand($verb, 2);
+	$random_perposition = array_rand($preposition, 2);
 
-		//Build the sentence.
-		$sentence = ucfirst($articles[$random_article[0]]) . " "
-		. $adjective[$random_adjective[0]] . " "
-		. $noun[$random_noun[0]] . " "
-		. $verb[$random_verb[0]] . " "
-		. $preposition[$random_perposition[0]] . " "
-		. $articles[$random_article[1]] . " "
-		. $noun[$random_noun[1]] . ".";
+	//Build the sentence.
+	$sentence = ucfirst($articles[$random_article[0]]) . " "
+	. $adjective[$random_adjective[0]] . " "
+	. $noun[$random_noun[0]] . " "
+	. $verb[$random_verb[0]] . " "
+	. $preposition[$random_perposition[0]] . " "
+	. $articles[$random_article[1]] . " "
+	. $noun[$random_noun[1]] . ".";
 
-		//Return the sentence.
-		return $sentence;
-	}
+	//Return the sentence.
+	return $sentence;
+}
 ?>
 
 <!-- // HTML //-->
 <!doctype html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -164,7 +171,6 @@ function randomSubject()
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-
 <body>
     <a href="index2.php" title="EmailTrack Test">Send Mail</a>
     <br>

@@ -21,7 +21,7 @@
 
 
 /**
- * Index/Example 2
+ * Index 2/Example 2
  *
  * This example is a functional script for injecting
  * the tracking graphic, and sending an email using
@@ -115,10 +115,7 @@ if ($_POST['send'] == true) {
         color: red;
         font-size: 2em;
     }
-    input {
-        width: 100%;
-    }
-    textarea{
+    form, input, textarea {
         width: 100%;
     }
     </style>
@@ -135,7 +132,7 @@ if ($_POST['send'] == true) {
             <legend>Test the EmailTrack class...</legend>
             <div>
                 <label for="subject">To:</label>
-                <input type="text" name="to" value="<?='test'.rand().'@example.com';?>" />
+                <input type="text" name="to" value="<?='test_'.substr(md5(rand()), 0, 7).'@example.com';?>" />
             </div>
             <div>
                 <label for="subject">Subject:</label>
