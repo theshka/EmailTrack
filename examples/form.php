@@ -16,7 +16,7 @@
  * @author     Tyler Heshka <tyler@heshka.com>
  * @see        http://keybase.io/theshka
  * @license    http://opensource.org/licenses/MIT
- * @version    0.00.20
+ * @version    0.00.30
  */
 
 
@@ -54,7 +54,7 @@ if ($_POST['send'] == true) {
         /**
          * Inject the tracking graphic
          */
-        $message .= '<img src="static/images/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($to).'" alt="EmailTrack"/>';
+        $message .= '<img src="../src/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($to).'" alt="EmailTrack"/>';
 
         /**
          * Setup mail headers
@@ -125,7 +125,7 @@ if ($_POST['send'] == true) {
 </head>
 
 <body>
-    <a href="index.php" title="EmailTrack Test">View Database</a>
+    <a href="output.php" title="EmailTrack Test">View Database</a>
     <br><br>
     <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
         <fieldset>

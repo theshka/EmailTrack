@@ -16,11 +16,11 @@
  * @author     Tyler Heshka <tyler@heshka.com>
  * @see        http://keybase.io/theshka
  * @license    http://opensource.org/licenses/MIT
- * @version    0.00.20
+ * @version    0.00.30
  */
 
  /**
-  * Index/Example 1
+  * Example 1
   *
   * This example demonstrates how the class is to be used.
   * It will output the tracking graphic, and display all
@@ -45,7 +45,7 @@ $email = 'test_'.substr(md5(rand()), 0, 7).'@example.com';
  * Ideally, you would inlcude the graphic in a script that is emailing
  * something using sendmail, phpMailer, or another transport class.
  */
-$trackingGraphic = '<img src="static/images/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($email).'" alt="EmailTrack"/>';
+$trackingGraphic = '<img src="../src/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($email).'" alt="EmailTrack"/>';
 
 /**
  * Output the tracking graphic.
@@ -75,7 +75,7 @@ function outputHTML()
     echo '</thead>';
     echo '<tbody>';
 
-    $db = new PDO('sqlite:./application/data/_main.db');
+    $db = new PDO('sqlite:../data/_main.db');
     $result = $db->query('SELECT email, subject, opened FROM email_log');
     foreach ($result as $row) {
         echo '<tr>';
@@ -172,7 +172,7 @@ function randomSubject()
     <![endif]-->
 </head>
 <body>
-    <a href="index2.php" title="EmailTrack Test">Send Mail</a>
+    <a href="../index.html" title="EmailTrack Test">View Demo</a>
     <br>
     <?php outputHTML(); ?>
 </body>

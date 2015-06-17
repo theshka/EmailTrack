@@ -1,2 +1,3 @@
 .DS_Store
-application/data/_main.db
+Thumbs.db
+/data/_main.db

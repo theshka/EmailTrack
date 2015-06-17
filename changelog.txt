@@ -1,5 +1,8 @@
 *** EmailTrack Changelog ***
 
+2015.06.16 - version 0.3
+ * [Changed] Project structure, make class files more apparent.
+
 2015.06.12 - version 0.2
  * [NEW] Database connect method.
  * [NEW] checkVars method instead of doing it in the runApplication method.
@@ -13,4 +16,4 @@
  * [Removed] No longer tracking _main.db file from project.
 
 2015.05.01 - version 0.1
- * [NEW] Initial Commit
+ * [NEW] Initial Commit.

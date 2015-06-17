@@ -16,7 +16,7 @@
  * @author     Tyler Heshka <tyler@heshka.com>
  * @see        http://keybase.io/theshka
  * @license    http://opensource.org/licenses/MIT
- * @version    0.00.20
+ * @version    0.00.30
  */
 
  /**
@@ -30,12 +30,12 @@
  /**
   * SQLITE_PATH is the path to the SQLITE database
   */
- define('SQLITE_PATH',   '../../application/data/_main.db');
+ define('SQLITE_PATH',   '../data/_main.db');
 
  /**
   * IMAGE_PATH is the path to the blank .gif image
   */
- define('IMAGE_PATH',    'blank.gif');
+ define('IMAGE_PATH',    'images/blank.gif');
 
  /**
   * REDIRECT_TO is the path to redirect if proper parameters are not supplied.

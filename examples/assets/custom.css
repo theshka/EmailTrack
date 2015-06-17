@@ -1,0 +1,35 @@
+img {
+    width:100%;
+    height:auto;
+}
+.section {
+text-align: center;
+width: 100%;
+height: 100%;
+}
+.hero{
+    margin-top: 15%;
+}
+.hero-heading {
+  padding-top: 15%;
+}
+/* Bigger than 550 */
+@media (min-width: 550px) {
+  .hero-heading {
+    font-size: 2.4rem;
+  }
+}
+
+/* Bigger than 750 */
+@media (min-width: 750px) {
+  .hero-heading {
+    font-size: 2.5rem;
+  }
+}
+
+/* Bigger than 1000 */
+@media (min-width: 1000px) {
+  .hero-heading {
+    font-size: 2.6rem;
+  }
+}
