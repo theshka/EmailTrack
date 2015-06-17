@@ -66,8 +66,8 @@ echo $trackingGraphic;
 function outputHTML()
 {
     //Output the HTML table...
-    echo '<table>';
-    echo '<caption>SQLite Database Output</caption>';
+    echo '<table class="u-full-width">';
+    echo '<caption><h2>SQLite Database Output</h2></caption>';
     echo '<thead>';
     echo '<th>Email</th>';
     echo '<th>Subject</th>';
@@ -101,10 +101,10 @@ function outputHTML()
  */
 function resetDatabase($db)
 {
-    //if database > 20 , drop table.
+    //if database > 15 , drop table.
     $result = $db->query('SELECT COUNT(*) FROM email_log');
     foreach ($result as $row) {
-        if ($row[0] > 20) {
+        if ($row[0] > 15) {
             //Reset the table
             $delete = $db->exec('DELETE FROM email_log');
             $vacuum = $db->exec('VACUUM');
@@ -155,25 +155,32 @@ function randomSubject()
 <head>
     <meta charset="utf-8">
 
-    <title>EmailTrack by theshka</title>
+    <title> EmailTrack by tHeshka - Output Example</title>
     <meta name="description" content="This class will output a ghost image and update a SQLite database.">
     <meta name="author" content="Tyler Heshka <theshka>">
 
-    <style>
-    table {
-        width: 100%;
-    }
-    table, th, td {
-        border: 1px solid black;
-    }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="assets/custom.css">
+
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body>
-    <a href="../index.html" title="EmailTrack Test">View Demo</a>
-    <br>
-    <?php outputHTML(); ?>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <div class="row">
+                    <div class="twelve columns">
+                        <a href="form.php" class="button" title="EmailTrack Test">Send Mail</a>
+                        <a href="../index.html" class="button button-primary u-pull-right" title="EmailTrack Demo">Main</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php outputHTML(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
