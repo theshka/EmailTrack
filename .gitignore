@@ -1,3 +1,7 @@
+#System Artifacts
 .DS_Store
 Thumbs.db
-/data/_main.db
+
+#SQLITE data
+data/*
+!data/_main.db.sqlite
