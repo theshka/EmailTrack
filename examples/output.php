@@ -77,15 +77,17 @@ function outputHTML()
 
     $db = new PDO('sqlite:../data/_main.db');
     $result = $db->query('SELECT email, subject, opened FROM email_log');
-    foreach ($result as $row) {
-        echo '<tr>';
-        echo '<td>'.$row['email'].'</td>';
-        echo '<td>'.$row['subject'].'</td>';
-        echo '<td>'.$row['opened'].'</td>';
-        echo '</tr>';
+    if($result) {
+        foreach ($result as $row) {
+            echo '<tr>';
+            echo '<td>'.$row['email'].'</td>';
+            echo '<td>'.$row['subject'].'</td>';
+            echo '<td>'.$row['opened'].'</td>';
+            echo '</tr>';
+        }
+        echo '</tbody>';
+        echo '</table>';
     }
-    echo '</tbody>';
-    echo '</table>';
 
     //Reset the database
     resetDatabase($db);
@@ -103,14 +105,17 @@ function resetDatabase($db)
 {
     //if database > 15 , drop table.
     $result = $db->query('SELECT COUNT(*) FROM email_log');
-    foreach ($result as $row) {
-        if ($row[0] > 15) {
-            //Reset the table
-            $delete = $db->exec('DELETE FROM email_log');
-            $vacuum = $db->exec('VACUUM');
+    if ($result) {
+        foreach ($result as $row) {
+            if ($row[0] > 15) {
+                //Reset the table
+                $delete = $db->exec('DELETE FROM email_log');
+                $vacuum = $db->exec('VACUUM');
+            }
         }
     }
 }
+
 /**
  * Generate Random Subject
  *
