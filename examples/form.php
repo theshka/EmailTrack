@@ -31,7 +31,7 @@
 /**
  * Are we sending the message?
  */
-if ($_POST['send'] == true) {
+if (isset($_POST['send']) && $_POST['send'] == true) {
     /**
      * Get your variables.
      */
@@ -122,7 +122,7 @@ if ($_POST['send'] == true) {
     <div class="container">
         <div class="row">
             <div class="twelve columns">
-                <?php if($email){echo $email;?>
+                <?php if(isset($email)){echo $email;?>
                 <div class="row">
                     <div class="twelve columns">
                         <a href="output.php" class="button button-primary u-full-width" title="EmailTrack Output">View Database</a>
@@ -131,7 +131,7 @@ if ($_POST['send'] == true) {
                 <?php } else { ?>
                 <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
                     <fieldset>
-                        <legend><?php if($feedback){echo $feedback;}else{echo '<h2>Test the EmailTrack class...</h2>';} ?></legend>
+                        <legend><?php if(isset($feedback)){echo $feedback;}else{echo '<h2>Test the EmailTrack class...</h2>';} ?></legend>
                         <div>
                             <label for="subject">To:</label>
                             <input type="text" name="to" value="<?='test_'.substr(md5(rand()), 0, 7).'@example.com';?>" class="u-full-width"/>
