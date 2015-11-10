@@ -16,7 +16,7 @@
  * @author     Tyler Heshka <tyler@heshka.com>
  * @see        http://keybase.io/theshka
  * @license    http://opensource.org/licenses/MIT
- * @version    0.00.30
+ * @version    0.3.5
  */
 
  /**
@@ -40,7 +40,7 @@
  /**
   * REDIRECT_TO is the path to redirect if proper parameters are not supplied.
   */
- define('REDIRECT_TO',   'https://heshka.com');
+ define('REDIRECT_TO',   'http://heshka.com');
 
 
 /**
@@ -91,8 +91,6 @@ class EmailTrack
      */
     public function __construct()
     {
-        //Connect the database
-        $this->connectDB();
         //Run the application
         $this->runApplication();
     }
@@ -278,6 +276,9 @@ class EmailTrack
      */
     public function runApplication()
     {
+        //Connect the database
+        $this->connectDB();
+
         //Check for valid GET parameters
         if ($this->checkVars() === true) {
             //Get the variables
