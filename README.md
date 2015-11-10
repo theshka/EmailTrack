@@ -1,58 +1,66 @@
-# EmailTrack
-## This simple PHP class outputs a ghost image and uses PDO & SQLite to track whether or not an email has been seen.
+EmailTrack
+======
 
+[![GitHub License](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+[![Software Version](https://img.shields.io/badge/version-0.3.5-red.svg)]()
+[![Github Downloads](https://img.shields.io/github/downloads/theshka/EmailTrack/latest/total.svg)]()
 
-## REQUIREMENTS
-- PHP 5.3+
-- PDO_SQLITE driver
+---
 
+**EmailTrack** This simple PHP class outputs a 'ghost' image/tracking-pixel then
+uses PDO & SQLite to track whether or not an email has been seen.
 
-## CONCEPT
-Wherever you send an email that needs to be tracked, we’ll just inject an image that ACTUALLY loads a PHP file on our server. The PHP class that is requested in the `<img...` tag, takes `$_GET` parameters, logs them in the SQLite database, then serves up an actual image.
+## Download
+* [Version 0.3.5](https://github.com/theshka/EmailTrack/archive/master.zip)
+* Old Versions
+    - [Version 0.3.0](https://github.com/theshka/EmailTrack/archive/V.0.3.zip)
 
+## Demo
+Working Demo: http://tyrexi.us/EmailTrack
 
-## PARAMETERS
+## Usage
+
+__Requires__ `PHP 5.3+` & `PDO_SQLITE` driver
+
+- Full instructions and examples are located in the `examples` folder.
+
+- The class file resides in `src/blank.php`
+
+- __You may need to edit paths to the SQLite database/gif in the class settings.__
+
+Note:
+> SQLite databases can pose a security risk, and may be downloaded with a direct link! Please take precautions to secure the file. You can so this with Apache `.htaccess` or by making the file hidden.*
+
+This simple PHP class can record opened email messages using tracking pixels. It can serve an image file that would be displayed in an email message when the user opens the message.
+
+The class records each access to the tracking image in a SQLite database accessed using PDO.
+
+It then takes the current request parameters/message-tracking values that are stored in the database like the timestamp, email address and message subject.
+
+Only the first access to the tracking image is recorded. Subsequent access to the same image will be ignored.
+
+## Parameters
+
 ```php
 $message .= '<img src="/src/blank.php?log=true&subject='.urlencode($subject).'&email='.urlencode($to).'" alt="EmailTrack"/>';
 ```
--------------------------------------
+
 |   **Key**   |     **Value**       |
 |-------------|---------------------|
 | ?log        | true                |
 | &subject    | urlencode($subject) |
 | &email      | urlencode($to)      |
--------------------------------------
 
-
-## INSTALLATION
-- Full instructions and examples are located in the `examples` folder.
-- The class file resides in `src/blank.php`
-- **You may need to edit paths to the SQLite database/gif in the class settings.**
-- *SQLite databases can pose a security risk, and may be downloaded with a direct link! Please take precautions to secure the file. You can so this with Apache `.htaccess` or by making the file hidden.*
-
-
-## DEMO
-Working Demo: http://tyrexi.us/EmailTrack
-
-
-## LICENSE
-This work is licensed by The MIT License (MIT)
-http://opensource.org/licenses/MIT
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
+## License
+This project is licensed under the [MIT LICENSE](https://github.com/theshka/EmailTrack/blob/master/LICENSE)
 
 ## Contributing
-* Create a Fork of the main branch.
-* Clone the repository `$ git clone http://github.com/yourusername/EmailTrack`
-* Add a connection to the repository.`$ git remote add origin http://github.com/theshka/EmailTrack`
-* Make changes to files.
-* `git add` and `git commit` those changes
-* `git push` them back to github. These will go to your version of the repository.
-* Submit a pull-request
+If you would like to help make this software better, please follow our guidelines found in [CONTRIBUTING.md](https://github.com/theshka/EmailTrack/blob/master/CONTRIBUTING.md)
+
+...and a special thank-you to all our  [contributors](https://github.com/theshka/EmailTrack/graphs/contributors)!
+
+## Contact
+* Homepage: http://heshka.com
+* Alternate:http://www.phpclasses.org/package/9228-PHP-Record-opened-email-messages-using-tracking-pixels.html
+* E-mail: tyler@heshka.com
+* KeyBase: https://keybase.io/theshka
