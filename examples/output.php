@@ -16,7 +16,7 @@
  * @author     Tyler Heshka <tyler@heshka.com>
  * @see        http://keybase.io/theshka
  * @license    http://opensource.org/licenses/MIT
- * @version    0.00.30
+ * @version    0.3.5
  */
 
  /**
