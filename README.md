@@ -1,9 +1,9 @@
 EmailTrack
 ======
 
-[![GitHub License](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![Software Version](https://img.shields.io/badge/version-0.3.5-red.svg)]()
-[![Github Downloads](https://img.shields.io/github/downloads/theshka/EmailTrack/latest/total.svg)]()
+[![GitHub License](https://img.shields.io/badge/License-MIT%20License-blue.svg)](https://github.com/theshka/EmailTrack/blob/master/LICENSE)
+[![Software Version](https://img.shields.io/badge/version-0.3.5-red.svg)](https://github.com/theshka/EmailTrack/archive/master.zip)
+[![Github Downloads](https://img.shields.io/github/downloads/theshka/EmailTrack/latest/total.svg)](https://github.com/theshka/EmailTrack/releases)
 
 ---
 
@@ -11,9 +11,11 @@ EmailTrack
 uses PDO & SQLite to track whether or not an email has been seen.
 
 ## Download
-* [Version 0.3.5](https://github.com/theshka/EmailTrack/archive/master.zip)
-* Old Versions
-    - [Version 0.3.0](https://github.com/theshka/EmailTrack/archive/V.0.3.zip)
+* [Dev-Master](https://github.com/theshka/EmailTrack/archive/master.zip)
+* [Version 0.3.5](https://github.com/theshka/EmailTrack/archive/v.0.3.5.zip)
+
+### Old Versions
+* [Version 0.3.0](https://github.com/theshka/EmailTrack/archive/V.0.3.zip)
 
 ## Demo
 Working Demo: http://tyrexi.us/EmailTrack
