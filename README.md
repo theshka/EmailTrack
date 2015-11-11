@@ -1,7 +1,7 @@
 EmailTrack
 ======
 
-[![GitHub License](https://img.shields.io/badge/License-MIT%20License-blue.svg)](https://github.com/theshka/EmailTrack/blob/master/LICENSE)
+[![GitHub License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/theshka/EmailTrack/blob/master/LICENSE)
 [![Software Version](https://img.shields.io/badge/version-0.3.5-red.svg)](https://github.com/theshka/EmailTrack/archive/master.zip)
 [![Github Downloads](https://img.shields.io/github/downloads/theshka/EmailTrack/latest/total.svg)](https://github.com/theshka/EmailTrack/releases)
 
@@ -63,6 +63,5 @@ If you would like to help make this software better, please follow our guideline
 
 ## Contact
 * Homepage: http://heshka.com
-* Alternate:http://www.phpclasses.org/package/9228-PHP-Record-opened-email-messages-using-tracking-pixels.html
 * E-mail: tyler@heshka.com
 * KeyBase: https://keybase.io/theshka
