@@ -1,11 +1,5 @@
-EmailTrack
+EmailTrack [![GitHub License](https://img.shields.io/github/license/theshka/EmailTrack.svg)](https://github.com/theshka/EmailTrack/blob/master/LICENSE.md) [![GitHub Release](https://img.shields.io/github/release/theshka/EmailTrack.svg)](https://github.com/theshka/EmailTrack/archive/master.zip)
 ======
-
-[![GitHub License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/theshka/EmailTrack/blob/master/LICENSE)
-[![Software Version](https://img.shields.io/badge/version-0.3.5-red.svg)](https://github.com/theshka/EmailTrack/archive/master.zip)
-[![Github Downloads](https://img.shields.io/github/downloads/theshka/EmailTrack/latest/total.svg)](https://github.com/theshka/EmailTrack/releases)
-
----
 
 **EmailTrack** This simple PHP class outputs a 'ghost' image/tracking-pixel then
 uses PDO & SQLite to track whether or not an email has been seen.
