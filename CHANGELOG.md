@@ -1,5 +1,17 @@
 EmailTrack - Changelog
 ======
+### Version 0.3.6
+Released: 4/Dec/2015
+
+```
+ * [New] PSR1 - Namespace the class `theshka\EmailTrack`
+ * [New] add data/.gitignore to ignore sqlite database
+ * [Changed] Rename LICENSE -> LICENSE.md
+ * [Changed] Update README.md
+ * [Changed] small fixes
+```
+
+---
 
 ### Version 0.3.5
 Released: 10/Nov/2015

@@ -8,9 +8,10 @@ then uses PDO & SQLite to track whether or not an email has been seen.
 
 ## Download
 * [Dev-Master](https://github.com/theshka/EmailTrack/archive/master.zip)
-* [Version 0.3.5](https://github.com/theshka/EmailTrack/archive/v.0.3.5.zip)
+* [Version 0.3.6](https://github.com/theshka/EmailTrack/archive/v.0.3.6.zip)
 
 ### Old Versions
+* [Version 0.3.5](https://github.com/theshka/EmailTrack/archive/v.0.3.5.zip)
 * [Version 0.3.0](https://github.com/theshka/EmailTrack/archive/V.0.3.zip)
 
 ## Demo
