@@ -109,7 +109,7 @@ class EmailTrack
     {
         try {
             //Create/connect to SQLite database
-            $this->db = new PDO('sqlite:'.SQLITE_PATH);
+            $this->db = new \PDO('sqlite:'.SQLITE_PATH);
 
             //Set errormode to exceptions
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
