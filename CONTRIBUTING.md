@@ -13,6 +13,7 @@ This is the `CONTRIBUTING.md` of our project. Great to have you here. Here are a
 This section includes ways to get started with your open source project. Include links to documentation and to different communication channels:
 
 * PhpClasses.org: [http://www.phpclasses.org/package/9228-PHP-Record-opened-email-messages-using-tracking-pixels.html](http://www.phpclasses.org/package/9228-PHP-Record-opened-email-messages-using-tracking-pixels.html)
+
 * GitHub Issues: [https://github.com/theshka/EmailTrack/issues](https://github.com/theshka/EmailTrack/issues)
 
 
