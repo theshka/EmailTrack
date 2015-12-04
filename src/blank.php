@@ -1,4 +1,4 @@
-<?php
+<?php namespace theshka\EmailTrack;
 /**
  * A simple PHP class to track whether or not an email was opened.
  *
@@ -216,14 +216,17 @@ class EmailTrack
     private function insertNewEntry()
     {
         //Prepare the statement
-        $insert = 'INSERT INTO email_log (email, subject, opened)
+        $sql = 'INSERT INTO email_log (email, subject, opened)
                    VALUES (:email, :subject, :opened)';
-        $stmt = $this->db->prepare($insert);
+        $stmt = $this->db->prepare($sql);
+
+        //Get the date
+        $date = gmdate('Y-m-d H:i:s');
 
         // Bind parameters to statement variables
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':subject', $this->subject);
-        $stmt->bindParam(':opened', gmdate('Y-m-d H:i:s'));
+        $stmt->bindParam(':opened', $date);
 
         //Execute the query
         if ($stmt->execute()) {
