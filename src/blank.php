@@ -112,7 +112,7 @@ class EmailTrack
             $this->db = new \PDO('sqlite:'.SQLITE_PATH);
 
             //Set errormode to exceptions
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
             //Create tables if they dont' exist
             $this->db->exec('CREATE TABLE IF NOT EXISTS `email_log` (
@@ -121,7 +121,7 @@ class EmailTrack
             `subject`	TEXT,
             `opened`	TEXT NOT NULL
             )');
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             // Print PDOException message
             echo $e->getMessage();
         }
